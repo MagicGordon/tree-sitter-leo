@@ -61,7 +61,15 @@
           "named": true
         },
         {
+          "type": "special_path",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "underscore",
           "named": true
         },
         {
@@ -164,7 +172,15 @@
     "named": true
   },
   {
+    "type": "special_path",
+    "named": true
+  },
+  {
     "type": "string",
+    "named": true
+  },
+  {
+    "type": "underscore",
     "named": true
   },
   {

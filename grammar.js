@@ -23,10 +23,12 @@ module.exports = grammar({
       $.boolean,
       $.none,
       $.special_expression,
+      $.special_path,
       $.numeric_literal,
       $.address_literal,
       $.locator,
       $.program_id,
+      $.underscore,
       $.identifier,
       $.string,
       $.operator,
@@ -46,10 +48,10 @@ module.exports = grammar({
 
     _whitespace: _ => token(/[\s\uFEFF\u2060\u200B]+/),
 
-    comment: _ => token(choice(
+    comment: _ => token(prec(2, choice(
       seq("//", /[^\n]*/),
       seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"),
-    )),
+    ))),
 
     annotation: _ => token(prec(PREC.token, /@[A-Za-z_][A-Za-z0-9_]*/)),
 
@@ -128,6 +130,12 @@ module.exports = grammar({
       "network.id",
     ))),
 
+    special_path: _ => token(prec(PREC.token, choice(
+      /group::[A-Za-z_][A-Za-z0-9_]*/,
+      /signature::[A-Za-z_][A-Za-z0-9_]*/,
+      /Future::[A-Za-z_][A-Za-z0-9_]*/,
+    ))),
+
     numeric_literal: _ => token(prec(PREC.token, choice(
       /0b[01][01_]*(u8|u16|u32|u64|u128|i8|i16|i32|i64|i128)?/,
       /0o[0-7][0-7_]*(u8|u16|u32|u64|u128|i8|i16|i32|i64|i128)?/,
@@ -140,6 +148,8 @@ module.exports = grammar({
     locator: _ => token(prec(PREC.token, /[A-Za-z_][A-Za-z0-9_]*\.aleo\/[A-Za-z_][A-Za-z0-9_]*/)),
 
     program_id: _ => token(prec(PREC.token, /[A-Za-z_][A-Za-z0-9_]*\.aleo/)),
+
+    underscore: _ => token(prec(PREC.token, "_")),
 
     identifier: _ => token(prec(PREC.token, /[A-Za-z_][A-Za-z0-9_]*/)),
 
