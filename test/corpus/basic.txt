@@ -12,21 +12,27 @@ program hello.aleo {
 ---
 
 (source_file
-  (keyword)
-  (program_id)
-  (keyword)
-  (identifier)
-  (visibility)
-  (identifier)
-  (builtin_type)
-  (operator)
-  (builtin_type)
-  (keyword)
-  (identifier)
-  (builtin_type)
-  (operator)
-  (identifier)
-  (operator)
-  (numeric_literal)
-  (keyword)
-  (identifier))
+  (program_declaration
+    (program_keyword)
+    (program_id)
+    (block
+      (transition_declaration
+        (transition_keyword)
+        (identifier)
+        (parameter_list
+          (visibility)
+          (identifier)
+          (builtin_type))
+        (return_type
+          (arrow_operator)
+          (builtin_type))
+        (block
+          (keyword)
+          (identifier)
+          (builtin_type)
+          (operator)
+          (identifier)
+          (operator)
+          (numeric_literal)
+          (keyword)
+          (identifier))))))
