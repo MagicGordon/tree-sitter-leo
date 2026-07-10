@@ -1,0 +1,16 @@
+{
+  "name": "tree-sitter-leo",
+  "version": "0.0.1",
+  "description": "Leo grammar for Tree-sitter.",
+  "main": "grammar.js",
+  "repository": "https://github.com/MagicGordon/tree-sitter-leo",
+  "license": "MIT",
+  "tree-sitter": [
+    {
+      "scope": "source.leo",
+      "file-types": [
+        "leo"
+      ]
+    }
+  ]
+}

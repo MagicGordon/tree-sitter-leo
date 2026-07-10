@@ -1,0 +1,32 @@
+=================================
+Basic program
+=================================
+
+program hello.aleo {
+    transition mint(private amount: u64) -> u64 {
+        let value: u64 = amount + 1u64;
+        return value;
+    }
+}
+
+---
+
+(source_file
+  (keyword)
+  (program_id)
+  (keyword)
+  (identifier)
+  (visibility)
+  (identifier)
+  (builtin_type)
+  (operator)
+  (builtin_type)
+  (keyword)
+  (identifier)
+  (builtin_type)
+  (operator)
+  (identifier)
+  (operator)
+  (numeric_literal)
+  (keyword)
+  (identifier))

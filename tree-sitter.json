@@ -1,0 +1,38 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "leo",
+      "camelcase": "Leo",
+      "scope": "source.leo",
+      "path": ".",
+      "file-types": [
+        "leo"
+      ],
+      "injection-regex": "^leo$",
+      "class-name": "TreeSitterLeo"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "Leo grammar for Tree-sitter.",
+    "authors": [
+      {
+        "name": "MagicGordon"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/MagicGordon/tree-sitter-leo"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "node": false,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}
