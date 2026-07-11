@@ -118,3 +118,155 @@ program coverage.aleo {
       (operator)
       (operator)
       (operator))))
+
+=================================
+Current Leo declarations
+=================================
+
+program current.aleo {
+    interface Parent {
+        fn read(public owner: address) -> u64;
+    }
+
+    interface Child: Parent {
+        view fn read(public owner: address) -> u64;
+        record Receipt;
+        mapping balances: address => u64;
+        storage paused: bool;
+    }
+
+    struct Holder {
+        id: identifier,
+        boxed: dyn record,
+    }
+
+    view fn balance(public owner: address) -> u64 {
+        let tag: identifier = 'balance';
+        return 0u64;
+    }
+
+    final fn finalize(public owner: address) {
+        let tag: identifier = 'finalize';
+    }
+
+    fn helper::[N: u32](private values: [u64; N]) -> u64 {
+        return values[0u32];
+    }
+}
+
+---
+
+(source_file
+  (program_declaration
+    (program_keyword)
+    (program_id)
+    (block
+      (interface_declaration
+        (interface_keyword)
+        (identifier)
+        (block
+          (fn_declaration
+            (fn_keyword)
+            (identifier)
+            (parameter_list
+              (visibility)
+              (identifier)
+              (builtin_type))
+            (return_type
+              (arrow_operator)
+              (builtin_type)))))
+      (interface_declaration
+        (interface_keyword)
+        (identifier)
+        (declaration_tail
+          (identifier))
+        (block
+          (view_function_declaration
+            (view_keyword)
+            (fn_keyword)
+            (identifier)
+            (parameter_list
+              (visibility)
+              (identifier)
+              (builtin_type))
+            (return_type
+              (arrow_operator)
+              (builtin_type)))
+          (record_declaration
+            (record_keyword)
+            (identifier))
+          (mapping_declaration
+            (mapping_keyword)
+            (identifier)
+            (declaration_tail
+              (builtin_type)
+              (operator)
+              (builtin_type)))
+          (storage_declaration
+            (storage_keyword)
+            (identifier)
+            (declaration_tail
+              (builtin_type)))))
+      (struct_declaration
+        (struct_keyword)
+        (identifier)
+        (block
+          (identifier)
+          (builtin_type)
+          (identifier)
+          (builtin_type)
+          (record_keyword)))
+      (view_function_declaration
+        (view_keyword)
+        (fn_keyword)
+        (identifier)
+        (parameter_list
+          (visibility)
+          (identifier)
+          (builtin_type))
+        (return_type
+          (arrow_operator)
+          (builtin_type))
+        (block
+          (keyword)
+          (identifier)
+          (builtin_type)
+          (operator)
+          (identifier_literal)
+          (keyword)
+          (numeric_literal)))
+      (final_function_declaration
+        (final_keyword)
+        (fn_keyword)
+        (identifier)
+        (parameter_list
+          (visibility)
+          (identifier)
+          (builtin_type))
+        (block
+          (keyword)
+          (identifier)
+          (builtin_type)
+          (operator)
+          (identifier_literal)))
+      (fn_declaration
+        (fn_keyword)
+        (identifier)
+        (const_parameters
+          (bracketed_expression
+            (identifier)
+            (builtin_type)))
+        (parameter_list
+          (visibility)
+          (identifier)
+          (bracketed_expression
+            (builtin_type)
+            (identifier)))
+        (return_type
+          (arrow_operator)
+          (builtin_type))
+        (block
+          (keyword)
+          (identifier)
+          (bracketed_expression
+            (numeric_literal)))))))

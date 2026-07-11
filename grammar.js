@@ -27,6 +27,8 @@ module.exports = grammar({
       $.storage_declaration,
       $.constructor_declaration,
       $.test_function_declaration,
+      $.view_function_declaration,
+      $.final_function_declaration,
       $.function_declaration,
       $.transition_declaration,
       $.inline_declaration,
@@ -64,6 +66,7 @@ module.exports = grammar({
       repeat($.annotation),
       $.interface_keyword,
       field("name", $.identifier),
+      optional(seq(":", $.declaration_tail)),
       field("body", $.block),
     )),
 
@@ -119,6 +122,22 @@ module.exports = grammar({
       $._callable_tail,
     )),
 
+    view_function_declaration: $ => prec(1, seq(
+      repeat($.annotation),
+      $.view_keyword,
+      $.fn_keyword,
+      field("name", $.identifier),
+      $._callable_tail,
+    )),
+
+    final_function_declaration: $ => prec(1, seq(
+      repeat($.annotation),
+      $.final_keyword,
+      $.fn_keyword,
+      field("name", $.identifier),
+      $._callable_tail,
+    )),
+
     transition_declaration: $ => prec(1, seq(
       repeat($.annotation),
       optional($.async_keyword),
@@ -157,6 +176,7 @@ module.exports = grammar({
 
     _callable_tail: $ => seq(
       optional($.type_parameters),
+      optional($.const_parameters),
       field("parameters", $.parameter_list),
       optional($.return_type),
       choice(field("body", $.block), ";"),
@@ -198,6 +218,11 @@ module.exports = grammar({
         ",",
       )),
       ">",
+    ),
+
+    const_parameters: $ => seq(
+      "::",
+      $.bracketed_expression,
     ),
 
     parameter_list: $ => seq(
@@ -265,6 +290,7 @@ module.exports = grammar({
       $.special_path,
       $.numeric_literal,
       $.address_literal,
+      $.identifier_literal,
       $.locator,
       $.program_id,
       $.underscore,
@@ -304,6 +330,7 @@ module.exports = grammar({
     transition_keyword: _ => token(prec(PREC.token, "transition")),
     inline_keyword: _ => token(prec(PREC.token, "inline")),
     final_keyword: _ => token(prec(PREC.token, "final")),
+    view_keyword: _ => token(prec(PREC.token, "view")),
     script_keyword: _ => token(prec(PREC.token, "script")),
     fn_keyword: _ => token(prec(PREC.token, "fn")),
     async_keyword: _ => token(prec(PREC.token, "async")),
@@ -338,11 +365,13 @@ module.exports = grammar({
       "Final",
       "Future",
       "group",
+      "dyn",
       "i8",
       "i16",
       "i32",
       "i64",
       "i128",
+      "identifier",
       "scalar",
       "signature",
       "string",
@@ -382,6 +411,8 @@ module.exports = grammar({
     ))),
 
     address_literal: _ => token(prec(PREC.token, /aleo1[a-z0-9]+/)),
+
+    identifier_literal: _ => token(prec(PREC.token, /'[A-Za-z][A-Za-z0-9_]*'/)),
 
     locator: _ => token(prec(PREC.token, /[A-Za-z_][A-Za-z0-9_]*\.aleo\/[A-Za-z_][A-Za-z0-9_]*/)),
 
