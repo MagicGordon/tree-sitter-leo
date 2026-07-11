@@ -7,6 +7,12 @@ program hello.aleo {
         let value: u64 = amount + 1u64;
         return value;
     }
+
+    @test
+    @should_fail
+    fn test_mint() {
+        assert_eq(mint(1u64), 2u64);
+    }
 }
 
 ---
@@ -35,4 +41,17 @@ program hello.aleo {
           (operator)
           (numeric_literal)
           (keyword)
-          (identifier))))))
+          (identifier)))
+      (test_function_declaration
+        (test_annotation)
+        (annotation)
+        (fn_keyword)
+        (identifier)
+        (parameter_list)
+        (block
+          (keyword)
+          (parenthesized_expression
+            (identifier)
+            (parenthesized_expression
+              (numeric_literal))
+            (numeric_literal)))))))

@@ -445,8 +445,17 @@
             }
           },
           {
-            "type": "SYMBOL",
-            "name": "function_keyword"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "function_keyword"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "fn_keyword"
+              }
+            ]
           },
           {
             "type": "FIELD",

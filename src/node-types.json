@@ -1874,6 +1874,10 @@
           "named": true
         },
         {
+          "type": "fn_keyword",
+          "named": true
+        },
+        {
           "type": "function_keyword",
           "named": true
         },

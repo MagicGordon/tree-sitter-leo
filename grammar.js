@@ -107,7 +107,7 @@ module.exports = grammar({
     test_function_declaration: $ => prec(2, seq(
       $.test_annotation,
       repeat($.annotation),
-      $.function_keyword,
+      choice($.function_keyword, $.fn_keyword),
       field("name", $.identifier),
       $._callable_tail,
     )),
